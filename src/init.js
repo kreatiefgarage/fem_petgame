@@ -1,14 +1,15 @@
-import gameState from "./gameState";
+import game from "./gameState";
+import { TICK_RATE } from "./constants";
+import initButtons from "./buttons";
 
-const TICK_RATE = 3000;
-
-// DELETED, when gameState.js was implemented
+// deleted, when gameState.js was implemented
 //function tick() {
 //  console.log("tick", Date.now());
 //}
 
 async function init() {
   console.log("starting game");
+  initButtons(game.handleUserAction);
 
   let nextTimeToTick = Date.now();
 
@@ -16,7 +17,7 @@ async function init() {
     const now = Date.now();
 
     if (nextTimeToTick <= now) {
-      gameState.tick();
+      game.tick();
       nextTimeToTick = now + TICK_RATE;
     }
 
